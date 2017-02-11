@@ -58,13 +58,13 @@ int main()
 
 		if (a[i] > max) {
 
-			max = a[i];	//Find max to get no. of digits									
+			max = a[i];			//Find max to get Maximum No. of Digits									
 		}	
 	}
 
 	for (i = 1; max/i > 0; i = i*10) {
 
-		counting(a,n,10,i);			
+		counting(a,n,10,i);			//At Each Pass Apply CountingSort from LSB To MSB		
 	}
 	
 	printf("After Sorting\n");
