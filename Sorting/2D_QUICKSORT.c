@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void swap (int*,int*);
+int partition (int**,int,int);
+void quicksort (int**,int,int);
+
 void swap (int* a,int* b)
 {
 	int temp;
@@ -65,7 +69,7 @@ int  main()
 	}
 
 	quicksort(a,0,n-1);
-
+	printf("Sorted Output\n");
 	for (i = 0; i < n; i++) {
 
 		for (j = 0; j < 2; j++) {
