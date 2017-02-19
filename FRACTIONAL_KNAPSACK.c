@@ -63,7 +63,7 @@ double FractionalKnapsack(int w,struct item arr[],int n)
 	int cw = 0;
 	double fvalue = 0.0;
 
-	quicksort(arr,0,n-1);
+	quicksort(arr,0,n-1); //Sort Items by Value/Weight Ratio in Descending order
 
 	for (i = 0; i < n; i++) {
 	
@@ -72,9 +72,8 @@ double FractionalKnapsack(int w,struct item arr[],int n)
 			cw = cw + arr[i].weight;
 			fvalue = fvalue + arr[i].value;
 		}else {
-
-			int remain = w - cw;	
-			fvalue = fvalue + ((double)arr[i].value)*((double)remain/arr[i].weight);
+			int remain = w - cw;	//Take remaining weight
+			fvalue = fvalue + ((double)arr[i].value)*((double)remain/arr[i].weight); //Add value to Fraction of Wight
 			break;
 		}
 	}
@@ -95,9 +94,8 @@ int main()
 	struct item arr[n];
 
 	for (i = 0; i < n; i++) {
-	
+		
 		scanf("%d %d",&arr[i].value,&arr[i].weight);
-
 	}
 
 	max = FractionalKnapsack(w,arr,n);
