@@ -12,7 +12,8 @@ int max (int a,int b)
 	if (a > b) {
 
 		return a;
-	}else if (a < b) {
+		
+	} else if (a < b) {
 
 		return b;
 	}
