@@ -77,8 +77,8 @@ void bfs (int s, struct Queue* queue,int state[],int parent[],int distance[],int
 				if (state[i] == -1) { 			//If the neighbour is unvisited then push it on queue and marks as visiting node i.e. 0
 			
 					state[i] = 0;
-					distance[i] = distance[x] + 1;
-					parent[i] = x;
+					distance[i] = distance[x] + 1;	//Increase distance from parent by 1
+					parent[i] = x;			//Make i as parent of x
 					eq(queue,i);
 				}
 			}
