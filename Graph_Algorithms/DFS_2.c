@@ -16,8 +16,8 @@ void dfs (int state[],int parent[],int d[],int f[],int v,int g[][1000])
 	}
 
 	tme = 0;
-
 	printf("\n");
+	
 	for (i = 0; i < v; i++) {
 
 		if (state[i] == -1) {
@@ -38,7 +38,8 @@ void DFSVISIT (int u,int state[],int parent[],int d[],int f[],int v,int g[][1000
 	tme = tme + 1;
 	d[u] = tme;
 	state[u] = 0;
-
+	printf("%d ",u);
+	
 	for (i = 0; i < v; i++) {
 
 		if (g[u][i] == 1) {
@@ -49,11 +50,9 @@ void DFSVISIT (int u,int state[],int parent[],int d[],int f[],int v,int g[][1000
 				DFSVISIT(i,state,parent,d,f,v,g);
 
 			}
-
 		}
-
 	}
-	printf("%d ",u);
+	
 	state[u] = 1;
 	tme = tme + 1;
 	f[u] = tme;
@@ -85,7 +84,7 @@ int main()
 		scanf("%d %d",&x,&y);						//Nodes with Edges in Undirected Graph
 
 		g[x][y] = 1;
-//		g[y][x] = 1;
+
 	}
 
 
