@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
- 
 //int solveKTUtil(int x, int y, int movei, int sol[N][N],
   //              int xMove[],  int yMove[]);
  
