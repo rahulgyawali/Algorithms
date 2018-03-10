@@ -13,7 +13,7 @@ int main()
     int j;
     int n = sizeof(A)/sizeof(A[0]);
     int LIS[n];
-
+    int max;	
     for(i = 0; i < n; i++) {
 
 	LIS[i] = 1;
@@ -32,6 +32,16 @@ int main()
 	}   
 
     }
-    cout<<LIS[n-1]<<endl;
+	
+    max = 1;
+	
+    for(i = 0; i < n; i++) {
+	    if(LIS[i] > max) {
+		LIS[i] = max;    
+	    }	
+    }	
+	
+    cout<<max<<endl;
+	
     return 0;
 }
