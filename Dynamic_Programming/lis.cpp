@@ -37,7 +37,7 @@ int main()
 	
     for(i = 0; i < n; i++) {
 	    if(LIS[i] > max) {
-		LIS[i] = max;    
+		max = LIS[i];    
 	    }	
     }	
 	
