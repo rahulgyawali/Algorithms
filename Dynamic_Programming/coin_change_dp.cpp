@@ -18,21 +18,30 @@ int countdp(int m,int S[],int N)
     int i;
     int j;
 
-    int dp[m][N+1];
+    int dp[m+1][N+1];
 
-    for(i=0; i < m; i++) {
-
-	for(j = 0; j < N+1; j++) {
-
-	    if(i == 0) dp[i][j] = 1;
-	    else if (j < S[i]) dp[i][j] = dp[i-1][j];
-	    else 
-	       dp[i][j] = dp[i-1][j] + dp[i][j-S[i]];
-	    
-	}
-    }
-
-    return dp[m-1][N];
+    for(i = 0; i <= m; i++)
+        dp[i][0] = 1;
+    
+    for(i = 0; i<= N; i++ )
+        dp[0][i] = 0;
+    
+    for(i = 1; i <  m+1; i++) {
+        
+        for(j = 1; j < N+1 ; j++) {
+            
+            if(S[i-1] > j) {
+		    dp[i][j] = dp[i-1][j];
+	    }
+            else {
+		    dp[i][j] = dp[i-1][j] + dp[i][j-S[i-1]];
+        	
+	    }
+        }
+        
+    }	
+	
+    return dp[m][N];
 }
 
 int main()
