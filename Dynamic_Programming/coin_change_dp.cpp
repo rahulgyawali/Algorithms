@@ -23,7 +23,7 @@ int countdp(int m,int S[],int N)
     for(i = 0; i <= m; i++)
         dp[i][0] = 1;
     
-    for(i = 0; i<= N; i++ )
+    for(i = 1; i<= N; i++ )
         dp[0][i] = 0;
     
     for(i = 1; i <  m+1; i++) {
