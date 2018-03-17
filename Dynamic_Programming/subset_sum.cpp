@@ -28,7 +28,7 @@ int subset_sum(int a[],int n,int sum)
      i = n;
      j = sum;
 
-     vector<int> v;
+     stack<int> s;
 
      while(i > 0 && j > 0) {
 
@@ -36,18 +36,19 @@ int subset_sum(int a[],int n,int sum)
 
 	    i--;
 	}else {
-	   v.push_back(a[i-1]);
+	   s.push(a[i-1]);
 	   
 	   j = j - a[i-1];
 	   i--;
 	}
      }
 
-     reverse(v.begin(),v.end());
-
-     for(i=0; i < n; i++)
-	cout<<v[i]<<" ";
-
+     while(!s.empty()) {
+	     
+	cout<<s.top()<<" ";	
+     	s.pop();
+     }
+	
     cout<<endl;
 
     return dp[n][sum];
