@@ -39,12 +39,16 @@ int minj(int a[],int n)
     }
     
     set<int>s;
+	
     for(i=1; i < n; i++)
 	s.insert(results[i]);
+	
     set<int>:: iterator it;
+	
     for(it=s.begin();it != s.end() ;++it) {
 	cout<<*it<<" ";
     }
+	
     cout<<"---\n";    
     return MNJ[n-1];
 }
