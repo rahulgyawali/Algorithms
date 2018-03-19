@@ -1,16 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 int MAX(int a,int b)
 {
 	return a>b?a:b;
 }
+
 int max_sum_is(vector <int>  v)
 {
 	int i;
 	int j;
 	int LIS[v.size()];
 	int max = 0;
-
+	
 	for(i = 0; i < v.size(); i++) {
 
 		LIS[i] = v[i];
