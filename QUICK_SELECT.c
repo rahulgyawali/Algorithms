@@ -15,7 +15,7 @@ int partition (int a[],int low,int high)
 	int pindex;
 	int pivot;
 	int i;
-
+	//asdasdasdasd
 	pivot = a[high];
 	pindex = low;
 
@@ -73,4 +73,6 @@ int main()
 	int x = quickselect(a,0,n-1,k);
 	
 	printf("%d",x);
+
+	return 0;
 }
