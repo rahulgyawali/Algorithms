@@ -46,10 +46,10 @@ int countdp(int m,int S[],int N)
 
 int main()
 {
-    int S[] = {1,2,3};
+    int S[] = {1,2};
     int N = 4;
 
 //    cout<<count(S,3,N)<<endl;
-      cout<<countdp(3,S,N)<<endl;
+      cout<<countdp(2,S,N)<<endl;
     return 0;
 }

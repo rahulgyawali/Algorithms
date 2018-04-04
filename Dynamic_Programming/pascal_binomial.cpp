@@ -26,6 +26,12 @@ int ncr(int n,int r)
 	}
     }
 
+    for(i = 0; i <= r; i++) {
+	
+	cout<<C[i]<<" ";
+    }
+
+    cout<<endl;
     return C[r];
 }
 
