@@ -9,7 +9,7 @@ struct TrieNode {
 
 struct TrieNode* newnode(void)
 {
-	struct TrieNode* temp = new TrieNode;
+	struct TrieNode* temp = (struct TrieNode*)malloc(sizeof(struct TrieNode));
 	temp->isEndOfWord = false;
 	int i;
 	for(i = 0; i < 26 ; i++) {
