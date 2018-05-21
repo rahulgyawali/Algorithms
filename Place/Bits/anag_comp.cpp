@@ -8,7 +8,7 @@ int main()
 	int arr[32];
 	int brr[32];
 
-	int i=0;
+	int i = 0;
 	while(a) {
 		arr[i] = a%2;
 		a = a/2;
