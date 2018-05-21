@@ -47,15 +47,45 @@ bool search (struct TrieNode* root,string key)
 	struct TrieNode* p = root;
 
 	for(i = 0; i < key.size(); i++) {
-		
-	
+		int index = key[i] - 'a';
+		if(p->children[index] == NULL) {
+			return false;
+		}
+		p = p->children[index];
 	}
+	return (p!=NULL && p->isEndOfWord);
 }
-
-
 
 int main()
 {
+	int i;
+	vector<string> vr;
+	int n;
+	cin>>n;
+	string h;
+
+	while(n--) {
+		cin>>h;
+		vr.push_back(h);
+	}
+
+	struct TrieNode* root = NULL;
+	root = newnode();
 	
+	for(i = 0 ; i < n; i++) {
+
+		insert(root,vr[i]);
+	}
+	
+
+	string q;
+	cin>>q;
+
+	if(search(root,q) == true) {
+		cout<<"YES"<<endl;
+	}else{
+		cout<<"NO"<<endl;
+	}
+
 	return 0;
 }
