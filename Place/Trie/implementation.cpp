@@ -9,7 +9,7 @@ struct TrieNode {
 
 struct TrieNode* newnode(void)
 {
-	struct TrieNode* temp = (struct TrieNode*) malloc(sizeof(struct TrieNode));
+	struct TrieNode* temp = new TrieNode;
 	temp->isEndOfWord = false;
 	int i;
 	for(i = 0; i < 26 ; i++) {
@@ -35,14 +35,11 @@ void insert(struct TrieNode* root,string key)
 	}
 
 	temp->isEndOfWord = true;
-
+	
 }	
 
 bool search (struct TrieNode* root,string key)
 {
-	if(root == NULL) {
-		return false;
-	}
 	int i;
 	struct TrieNode* p = root;
 
@@ -53,7 +50,11 @@ bool search (struct TrieNode* root,string key)
 		}
 		p = p->children[index];
 	}
-	return (p!=NULL && p->isEndOfWord);
+	if(p->isEndOfWord) {
+		return true;
+	}
+
+	return false;
 }
 
 int main()
@@ -63,14 +64,13 @@ int main()
 	int n;
 	cin>>n;
 	string h;
-
-	while(n--) {
+	int w = n;
+	while(w--) {
 		cin>>h;
 		vr.push_back(h);
 	}
 
-	struct TrieNode* root = NULL;
-	root = newnode();
+	struct TrieNode* root = newnode();
 	
 	for(i = 0 ; i < n; i++) {
 
