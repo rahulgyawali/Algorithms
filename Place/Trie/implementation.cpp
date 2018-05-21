@@ -2,15 +2,16 @@
 using namespace std;
 
 struct TrieNode {
-
+	struct TrieNode* parent;
 	struct TrieNode* children[26];
-	bool isEndOfWord;	
+	int count;	
 };
 
 struct TrieNode* newnode(void)
 {
 	struct TrieNode* temp = (struct TrieNode*)malloc(sizeof(struct TrieNode));
-	temp->isEndOfWord = false;
+	temp->count = 0;
+	temp->parent = NULL;
 	int i;
 	for(i = 0; i < 26 ; i++) {
 		
@@ -30,15 +31,16 @@ void insert(struct TrieNode* root,string key)
 		if(temp->children[index] == NULL) {
 
 			temp->children[index] = newnode();
+			temp->children[index]->parent = temp;
 		}
 		temp = temp->children[index];
 	}
 
-	temp->isEndOfWord = true;
+	(temp->count)++;
 	
 }	
 
-bool search (struct TrieNode* root,string key)
+struct TrieNode* search (struct TrieNode* root,string key)
 {
 	int i;
 	struct TrieNode* p = root;
@@ -46,15 +48,68 @@ bool search (struct TrieNode* root,string key)
 	for(i = 0; i < key.size(); i++) {
 		int index = key[i] - 'a';
 		if(p->children[index] == NULL) {
-			return false;
+			return NULL;
 		}
 		p = p->children[index];
 	}
-	if(p->isEndOfWord) {
-		return true;
+	if((p->count) > 0) {
+		return p;
 	}
 
-	return false;
+	return NULL;
+}
+
+void remove(struct TrieNode* root, string key)
+{
+	struct TrieNode* p = search(root,key);
+
+	if(p == NULL) {
+		return ;
+	}
+
+	--(p->count);
+
+	bool leaf = true;
+	int child_count = 0;
+
+	int i;
+
+	for(i = 0; i < 26; i++) {
+
+		if(p->children[i] != NULL) {
+
+			leaf = false;
+			++child_count;
+		}
+	}
+
+	if(!leaf) {
+
+		return ;
+	}
+
+	struct TrieNode* par;
+	
+	while((p->count == 0) && p->parent!=NULL && child_count == 0) {
+
+		child_count = 0;
+		par = p->parent;
+
+		for(i = 0; i < 26; i++) {
+	
+			if (par->children[i] != NULL) {
+
+				if(par->children[i] == p) {
+					par->children[i] = NULL;
+					free(p);
+					p = par;
+				}else {
+
+					++child_count;
+				}
+			}
+		}
+	}
 }
 
 int main()
@@ -79,13 +134,39 @@ int main()
 	
 
 	string q;
+
+	cout<<"ENTER TO SEARCH"<<endl;
 	cin>>q;
 
-	if(search(root,q) == true) {
+	if(search(root,q) != NULL) {
 		cout<<"YES"<<endl;
 	}else{
 		cout<<"NO"<<endl;
 	}
+
+	int x = 2;
+
+	while(x--) {
+		cin>>q;
+		remove(root,q);
+		if (search(root,q) != NULL) {
+
+			cout<<"YES"<<endl;
+		}else {
+
+			cout<<"NO"<<endl;
+		}
+	}
+
+	cout<<"ENTER TO SEARCH"<<endl;
+	cin>>q;
+
+	if(search(root,q) != NULL) {
+		cout<<"YES"<<endl;
+	}else{
+		cout<<"NO"<<endl;
+	}
+
 
 	return 0;
 }
