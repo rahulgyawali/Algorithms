@@ -38,6 +38,21 @@ void insert(struct TrieNode* root,string key)
 
 }	
 
+bool search (struct TrieNode* root,string key)
+{
+	if(root == NULL) {
+		return false;
+	}
+	int i;
+	struct TrieNode* p = root;
+
+	for(i = 0; i < key.size(); i++) {
+		
+	
+	}
+}
+
+
 
 int main()
 {
