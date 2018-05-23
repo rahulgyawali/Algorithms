@@ -1,22 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-struct node {
+struct node {																	//Defined structure of node
 	int data;
 	struct node* left;
 	struct node* right;
 };
 
-int height(struct node* root)
-{
-	if(root == NULL)
-		return -1;
-	return (1 + ((height(root->left) > height(root->right) ) ? height(root->left) : height(root->right))); 
-}
-
 struct node* getnode(int x)
 {
-	struct node* tmp = (struct node*)malloc(sizeof(struct node));
+	struct node* tmp = (struct node*)malloc(sizeof(struct node));				//Generate New Node in Memory
 	tmp->left = NULL;
 	tmp->right = NULL;
 	tmp->data = x;
@@ -24,10 +17,25 @@ struct node* getnode(int x)
 	return tmp;
 }
 
-int max(int a,int b)
+int max(int a,int b)															//return max of two no.s
 {
 	return a>b?a:b;
 }
+
+
+int height(struct node* root,int& dia)													//Gets height of tree rooted at root
+{
+	if(root == NULL)
+		return -1;
+
+	int left = height(root->left,dia);
+	int right = height(root->right,dia);
+
+	dia = max(dia,left+right+2);
+
+	return 1 + max(left,right);
+}
+
 
 int diameter(struct node* root)
 {
@@ -35,8 +43,8 @@ int diameter(struct node* root)
 		return 0;
 
 	int dia = INT_MIN;
-
-	return height(root,dia);
+	int ht = height(root,dia);
+	return dia;
 }
 
 int main()
