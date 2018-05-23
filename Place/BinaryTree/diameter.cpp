@@ -24,36 +24,24 @@ struct node* getnode(int x)
 	return tmp;
 }
 
-void levelorder(struct node* root)
+int max(int a,int b)
 {
-	queue<struct node*> q;
-	int n;
-
-	q.push(root);
-	
-	while(!q.empty()) {
-		
-		n = q.size();
-
-		while(n--) {
-
-			struct node* temp = q.front();
-			q.pop();
-			cout<<temp->data<<" ";
-
-			if(temp->left) {
-				q.push(temp->left);
-			}
-
-			if(temp->right) {
-				q.push(temp->right);
-			}
-		}
-		cout<<endl;
-	}
+	return a>b?a:b;
 }
 
+int diameter(struct node* root)
+{
+	if(root == NULL)
+		return 0;
 
+	int lh = height(root->left);
+	int rh = height(root->right);
+
+	int ld = diameter(root->left);
+	int rd = diameter(root->right);
+
+	return (max(lh+rh+2,max(ld,rd)));
+}
 
 int main()
 {
@@ -61,7 +49,14 @@ int main()
 	root->left = getnode(2);
 	root->right = getnode(3);
 	root->left->left = getnode(4);
+	root->left->left->left = getnode(6);
+	root->left->left->left->left = getnode(8);
 	root->left->right = getnode(5);
+	root->left->right->right = getnode(7);
+	root->left->right->right->right = getnode(9);
+
+	cout<<"Diameter is ";
+	cout<<diameter(root)<<endl;
 
 	return 0;
 }

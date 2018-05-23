@@ -7,11 +7,15 @@ struct node {
 	struct node* right;
 };
 
-int height(struct node* root)
+void  del(struct node* root)
 {
-	if(root == NULL)
-		return -1;
-	return (1 + ((height(root->left) > height(root->right) ) ? height(root->left) : height(root->right))); 
+	if(root == NULL) {
+		return ;
+	}
+	del(root->left);
+	del(root->right);
+	cout<<root->data<<endl;
+	free(root);
 }
 
 struct node* getnode(int x)
@@ -34,7 +38,8 @@ int main()
 	root->left->left = getnode(4);
 	root->left->right = getnode(5);
 	
-	cout<<"The Height is "<<height(root);
+	del(root);
+	root = NULL;
 	
 
 	return 0;
