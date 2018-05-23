@@ -24,35 +24,6 @@ struct node* getnode(int x)
 	return tmp;
 }
 
-void levelorder(struct node* root)
-{
-	queue<struct node*> q;
-	int n;
-
-	q.push(root);
-	
-	while(!q.empty()) {
-		
-		n = q.size();
-
-		while(n--) {
-
-			struct node* temp = q.front();
-			q.pop();
-			cout<<temp->data<<" ";
-
-			if(temp->left) {
-				q.push(temp->left);
-			}
-
-			if(temp->right) {
-				q.push(temp->right);
-			}
-		}
-		cout<<endl;
-	}
-}
-
 
 
 int main()
@@ -62,6 +33,9 @@ int main()
 	root->right = getnode(3);
 	root->left->left = getnode(4);
 	root->left->right = getnode(5);
+	
+	cout<<"The Height is "<<height(root);
+	
 
 	return 0;
 }
