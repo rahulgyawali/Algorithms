@@ -54,6 +54,47 @@ struct node* search(struct node* root,int key)
 								    
 }
 
+struct node* minimum(struct node* root)
+{
+	if(root == NULL) {
+		
+		return NULL;
+	}
+
+	while(root->left!=NULL) {
+
+		root = root->left;
+	}
+
+	return root;
+}
+
+struct node* inorder_succ(struct node* root,struct node* x)
+{
+	if(x->right != NULL) return minimum(x->right);
+
+	struct node* temp = NULL;
+
+	while(root) {
+	
+		if(root->data > x->data){
+
+			temp = root;
+			root = root->left;
+
+		}else if (root->data < x->data ) {
+
+			root = root->right;
+
+		}else{
+
+			break;
+		}
+	}
+
+	return temp;
+}
+
 void inorder(struct node* root)
 {
 	if(root == NULL) return;
@@ -74,6 +115,16 @@ int main()
 	root = insert(root,10);
 
 	inorder(root);
+
+	struct node* find = search(11);
+	if(find != NULL) {
+	
+		if(inorder_succ(root,find)) {
+
+			cout<<inorder_succ(root,find)->data<<endl;
+
+		}
+	}
 
 	return 0;
 }
