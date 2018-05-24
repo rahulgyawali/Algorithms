@@ -54,37 +54,37 @@ struct node* search(struct node* root,int key)
 								    
 }
 
-struct node* minimum(struct node* root)
+struct node* max(struct node* root)
 {
 	if(root == NULL) {
 		
 		return NULL;
 	}
 
-	while(root->left!=NULL) {
+	while(root->right!=NULL) {
 
-		root = root->left;
+		root = root->right;
 	}
 
 	return root;
 }
 
-struct node* inorder_succ(struct node* root,struct node* x)
+struct node* inorder_pre(struct node* root,struct node* x)
 {
-	if(x->right != NULL) return minimum(x->right);
+	if(x->left != NULL) return max(x->left);
 
 	struct node* temp = NULL;
 
 	while(root) {
 	
-		if(root->data > x->data){
+		if(root->data <  x->data){
 
 			temp = root;
-			root = root->left;
-
-		}else if (root->data < x->data ) {
-
 			root = root->right;
+
+		}else if (root->data > x->data ) {
+
+			root = root->left;
 
 		}else{
 
@@ -120,9 +120,9 @@ int main()
 	struct node* find = search(root,11);
 	if(find != NULL) {
 	
-		if(inorder_succ(root,find)) {
+		if(inorder_pre(root,find)) {
 
-			cout<<inorder_succ(root,find)->data<<endl;
+			cout<<inorder_pre(root,find)->data<<endl;
 
 		}
 	}
