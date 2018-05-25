@@ -117,7 +117,7 @@ int main()
 	inorder(root);
 	cout<<endl;
 
-	struct node* find = search(root,11);
+	struct node* find = search(root,10);
 	if(find != NULL) {
 	
 		if(inorder_pre(root,find)) {
