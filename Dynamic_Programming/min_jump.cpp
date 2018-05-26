@@ -49,7 +49,7 @@ int minj(int a[],int n)
 	cout<<*it<<" ";
     }
 	
-    cout<<"---\n";    
+    cout<<"\n---\n";    
     return MNJ[n-1];
 }
 
