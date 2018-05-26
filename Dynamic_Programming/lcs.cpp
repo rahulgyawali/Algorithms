@@ -61,8 +61,8 @@ int lcs(string X,string Y)
 
 int main()
 {
-    string x = "abcdaf";
-    string y =	"acbc";
+    string x = "AGGTAB" ;
+    string y =	"GXTXAYB";
     cout<<lcs(x,y)<<endl;
     
     return 0;
