@@ -18,38 +18,35 @@ int countdp(int m,int S[],int N)
     int i;
     int j;
 
-    int dp[m+1][N+1];
+    int dp[m][N+1];
 
-    for(i = 0; i <= m; i++)
+    for(i = 0; i < m; i++)
         dp[i][0] = 1;
     
-    for(i = 1; i<= N; i++ )
-        dp[0][i] = 0;
-    
-    for(i = 1; i <  m+1; i++) {
+    for(i = 0; i <  m; i++) {
         
         for(j = 1; j < N+1 ; j++) {
             
-            if(S[i-1] > j) {
+            if( j < S[i]) {
 		    dp[i][j] = dp[i-1][j];
 	    }
             else {
-		    dp[i][j] = dp[i-1][j] + dp[i][j-S[i-1]];
+		    dp[i][j] = dp[i-1][j] + dp[i][j-S[i]];
         	
 	    }
         }
         
     }	
 	
-    return dp[m][N];
+    return dp[m-1][N];
 }
 
 int main()
 {
-    int S[] = {1,2};
+    int S[] = {1,2,3};
     int N = 4;
 
 //    cout<<count(S,3,N)<<endl;
-      cout<<countdp(2,S,N)<<endl;
+      cout<<countdp(3,S,N)<<endl;
     return 0;
 }
