@@ -14,10 +14,15 @@ int main()
     int n = sizeof(A)/sizeof(A[0]);
     int LIS[n];
     int max;	
+
     for(i = 0; i < n; i++) {
 
 	LIS[i] = 1;
-    }   
+    }
+
+    int res[n];
+
+    memset(res,-1,sizeof(int)*n);
 
     for(i = 1; i <n; i++) {
 	j = 0;
@@ -26,13 +31,27 @@ int main()
 
 	    if(A[j] < A[i]) {
 
-		LIS[i] = max(LIS[i],LIS[j]+1);
+		if(LIS[i] < LIS[j]+1) {
+
+			LIS[i] =LIS[j] + 1;
+			res[i] = A[j];
+		}
 	    }
 	    j++;
 	}   
 
     }
+
+   for(i = 0; i < n ; i++) {
 	
+	if(res[i] != -1) {
+
+		cout<<res[i]<<" ";	
+	}
+    }
+
+   cout<<endl;
+
     max = 1;
 	
     for(i = 0; i < n; i++) {

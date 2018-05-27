@@ -42,7 +42,7 @@ int lrs(string X)
 
     while(i > 0 && j > 0) {
 
-	if(dp[i][j] == (dp[i-1][j-1]+1)) {
+	if(dp[i][j] > dp[i-1][j] &&  dp[i][j] > dp[i][j-1]) {
 
 	   v.push_back(X[i-1]);
 	    i--;
