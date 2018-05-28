@@ -31,17 +31,42 @@ int ksp(int val[],int wt[],int W,int n)
     
 	}	
     }
+	
+    i = n;
+    j = W;
+
+    stack<int> items;
+
+    while(i> 0 && j > 0) {
+
+	if(dp[i][j] != dp[i-1][j] ){
+		items.push(wt[i-1]);
+		j = j - wt[i-1];
+		i--;
+	}else{
+		i--;
+	}
+    }
+	
+
+    cout<<"-------------ITEMS-------------------------"<<endl;
+    while(!items.empty()) {
+
+		cout<<items.top()<<endl;
+		items.pop();
+
+    }
 
     return dp[n][W];
 }
 
 int main()
 {
-    int val[] = {60,100,120};
-    int wt[] = {10,20,30};
-    int W = 50;
+    int val[] = {1,4,5,7};
+    int wt[] = {1,3,4,5};
+    int W = 7;
 
-    cout<<ksp(val,wt,W,3)<<endl;
+    cout<<ksp(val,wt,W,4)<<endl;
    
    return 0;
 }
