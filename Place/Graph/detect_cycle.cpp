@@ -9,7 +9,7 @@ struct sets {
 
 struct sets ds[10001];
 
-void makes(int n)
+void make(int n)
 {
 	int i;
 	for(i = 0; i <= n; i++) {
@@ -22,7 +22,7 @@ void makes(int n)
 int find(int x)
 {
 	if(ds[x].parent != x) ds[x].parent = find(ds[x].parent);
-	return x;
+	return ds[x].parent;
 
 }
 
@@ -31,21 +31,22 @@ void uni(int a,int b)
 	int x= find(a);
 	int y= find(b);
 
-	if(a == b) {
+	if(x == y) {
 
 		return;
 	}else{
 
 		if(ds[x].rank > ds[y].rank) {
 
-			ds[y].parent = x;
+			ds[y].parent = ds[x].parent;
+
 		}else if (ds[x].rank < ds[y].rank) {
-			ds[x].parent = y;
+			ds[x].parent = ds[y].parent;
 
 		}else{
 			
-			ds[x].parent = y;
-			ds[y].rank++;
+			ds[x].parent = ds[y].parent;
+			(ds[y].rank)++;
 		}
 	}
 }
@@ -54,21 +55,27 @@ void uni(int a,int b)
 int main()
 {
 	int i;
+	int e;
 
-	vector<int> g[10001];
+	cin>>e;
 
-	g[1].push_back(2);
-	g[2].push_back(1);
-	g[1].push_back(6);
-	g[6].push_back(1);
-	g[2].push_back(3);
-	g[3].push_back(2);
-	g[5].push_back(2);
-	g[2].push_back(5);
-	g[4].push_back(3);
-	g[3].push_back(4);	
-	g[5].push_back(4);
-	g[4].push_back(5);
+	int a;
+	int b;
+
+	make(6);
+
+	while(e--) {
+		cin>>a>>b;
+		if(find(a) != find(b)) {
+			uni(a,b);
+			cout<<ds[a].parent<<" "<<ds[b].parent<<endl;
+		}else{
+			cout<<"CYCLE"<<endl;
+			break;
+		}
+	}
+
+
 
 	return 0;
 }
