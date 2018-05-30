@@ -61,10 +61,10 @@ int main()
 			if(dfs(vis,rs,g,i)) {
 
 				cout<<"YES"<<endl;
-				break;
+				return 0;
 			}
 		}
 	}
-
+	cout<<"NO"<<endl;
 	return 0;
 }
