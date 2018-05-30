@@ -49,15 +49,20 @@ int minj(int a[],int n)
 	cout<<*it<<" ";
     }
 	
-    cout<<"\n---\n";    
-    return MNJ[n-1];
+    cout<<"\n---\n";
+	if(MNJ[n-1]!=INT_MAX) {
+
+    		return MNJ[n-1];
+	}else{
+		return -1;
+	}
 }
 
 int main()
 {
-    int a[] = {2,3,1,1,2,4,2,0,1,1};
+    int a[] = {2,1,0,3};
 
-    cout<<minj(a,10)<<endl;
+    cout<<minj(a,4)<<endl;
 
     return 0;
 }

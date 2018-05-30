@@ -11,10 +11,12 @@ bool dfs(bool vis[],bool rs[],vector<int> g[],int s)
 
 		for(i = 0; i < g[s].size(); i++) {
 
-			if(vis[g[s][i]] ==false && dfs(vis,rs,g,g[s][i])) {
+			if(vis[g[s][i]] ==false){
 
-				return true;
+			       if(dfs(vis,rs,g,g[s][i])) {
 
+					return true;
+				}
 
 			} else if (rs[g[s][i]] == true) {
 
