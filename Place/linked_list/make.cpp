@@ -67,6 +67,62 @@ struct node* add_first(struct node* root,int x)
 	}
 	
 	return root;
+
+}
+
+struct node* add_after(struct node* root,int x,int y)
+{
+	struct node* p = root;
+
+	while(p) {
+	
+		if(p->data == y) {
+		
+			struct node* tmp = get(x);
+			tmp->next = p->next;
+			p->next = tmp;
+			return root;
+		}
+		p = p->next;
+	}
+
+	return root;
+}
+
+struct node* add_before(struct node* root,int x,int y)
+{
+	struct node* tmp;
+
+	if(root->data == y) {
+
+		tmp = get(x);
+		tmp->next = root;
+		root = tmp;
+		
+		return root;
+
+	}else{
+
+		struct node* p;
+
+		p = root;
+		
+		while(p->next != NULL) {
+
+			if(p->next->data == y) {
+
+				tmp = get(x);
+				tmp->next = p->next;
+				p->next = tmp;
+			
+				return root;
+			}
+
+			p = p->next;
+		}
+
+	}
+	return root;
 }
 
 int main()
@@ -76,7 +132,19 @@ int main()
 	root = add_first(root,11);
 	root = add_end(root,13);
 	root = add_first(root,10);
-	root = add_end(root,14);
+	root = add_end(root,20);
+
+	print(root);
+
+	root = add_before(root,9,10);
+	
+	print(root);
+
+	root = add_after(root,17,13);
+
+	print(root);
+
+	root = add_before(root,15,17);
 
 	print(root);
 
