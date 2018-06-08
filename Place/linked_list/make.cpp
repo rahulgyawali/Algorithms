@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
 struct node{
@@ -125,6 +126,50 @@ struct node* add_before(struct node* root,int x,int y)
 	return root;
 }
 
+struct node* del(struct node* root,int x)
+{
+	struct node* p;
+	struct node* tmp;
+
+	if(root->next == NULL) {
+
+		tmp = root;
+		root = NULL;
+		free(tmp);
+
+		return root;
+	}
+
+	if(root->data == x) {
+
+		tmp = root;
+		root = root->next;
+		free(tmp);
+
+		return root;
+	}
+
+	p = root;
+
+	while(p->next != NULL){
+
+		if(p->next->data == x){
+
+			tmp = p->next;
+			p->next = tmp->next;
+			free(tmp);
+
+			return root;
+		}
+
+		p = p->next;
+	}
+
+	cout<<"Not Found"<<endl;
+
+	return root;
+}
+
 int main()
 {
 	struct node* root = NULL;
@@ -147,6 +192,16 @@ int main()
 	root = add_before(root,15,17);
 
 	print(root);
+
+	root = del(root,13);
+
+	print(root);
+
+	root = del(root,9);
+
+	print(root);
+
+	root = del(root,34);
 
 	return 0;
 
