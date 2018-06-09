@@ -28,9 +28,9 @@ struct node* get(int x)
 {
 	struct node* temp;
 
-	temp = (struct node*)sizeof(struct node);
+	temp = (struct node*)malloc(sizeof(struct node));
 	temp->data =  x;
-       	temp->prev = NULL;
+    temp->prev = NULL;
 	temp->next = NULL;
 
 	return temp;
@@ -59,23 +59,17 @@ struct node* add_end(struct node* root,int x)
 	struct node* p;
 	struct node* tmp;
 
-	if(root == NULL) {
+	p = root;
 
-		tmp = get(x);
-		root = tmp;
-
-		return root;
-	}else{
-		p = root;
-
-		while(p->next != NULL){
+	while(p->next != NULL){
 		
 			p = p->next;
-		}
-		tmp = get(x);
-		tmp->prev = p;
-		p->next = tmp;
 	}
+		
+	tmp = get(x);
+	tmp->prev = p;
+	p->next = tmp;
+	
 	return root;
 }
 
@@ -86,12 +80,17 @@ struct node* add_after(struct node* root,int x,int y)
 	
 	p = root;
 
-	while(p->next != NULL) {
+	while(p) {
 	
 		if(p->data == x) {
 		
 			tmp = get(y);
-
+			tmp->prev = p;
+			tmp->next = p->next;
+			if(p->next != NULL){
+				p->next->prev = tmp;
+			}
+			p->next = tmp;
 
 		}
 
@@ -101,9 +100,57 @@ struct node* add_after(struct node* root,int x,int y)
 	return root;
 }
 
+struct node* add_before(struct node* root,int x,int y)
+{
+	struct node* tmp;
+	struct node* p;
+	
+	p = root;
+
+	if(root->data == x) {
+		tmp = get(x);
+		tmp->next = root;
+		root->prev = tmp;
+		root = tmp;
+		return root;
+	}
+
+	while(p) {
+	
+		if(p->data == x) {
+		
+			tmp = get(y);
+
+			tmp->prev = p->prev;
+			tmp->next = p;
+			p->prev->next = tmp;
+			p->prev = tmp;
+
+		}
+
+		p = p->next;
+	}
+
+	return root;
+}
+ 
+
 int main()
 {
+	struct node* root = NULL;
 
+	root = add_front(root,10);
+	print(root);
+	root = add_front(root,9);
+	print(root);
+	root = add_end(root,23);
+	print(root);
+	root = add_after(root,10,15);
+	print(root);
+	root = add_before(root,15,13);
+	print(root);
 
+	
+	
 	return 0;
 }
