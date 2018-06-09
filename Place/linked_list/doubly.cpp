@@ -134,6 +134,40 @@ struct node* add_before(struct node* root,int x,int y)
 	return root;
 }
  
+struct node* del(struct node* root,int x)
+{
+	struct node* tmp;
+	struct node* p;
+
+	if(root->data == x) {
+		tmp = root;
+		root = root->next;
+		root->prev = NULL;
+		free(tmp);
+		return root;
+	}
+
+	p = root;
+
+	while(p->next!=NULL){
+		if(p->data == x){
+			tmp = p;
+			tmp->prev->next = p->next;
+			tmp->next->prev = p->prev;
+			free(tmp);
+			return root;
+		}
+		p = p->next;
+	}
+	if(p->data == x) {
+		tmp = p;
+		tmp->prev->next = NULL;
+		free(tmp);
+		return root;
+	}
+
+	return root;
+}
 
 int main()
 {
@@ -149,8 +183,12 @@ int main()
 	print(root);
 	root = add_before(root,15,13);
 	print(root);
-
-	
+	root = del(root,10);
+	print(root);
+	root = del(root,13);
+	print(root);
+	root = del(root,23);
+	print(root);
 	
 	return 0;
 }
