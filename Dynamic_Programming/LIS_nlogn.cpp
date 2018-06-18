@@ -41,7 +41,7 @@ int main() {
 	            len++;
 	            //cout<<i<<" else if"<<endl;
 	        }else{
-	            tail[find(a,-1,len-1,a[i])] =a[i];
+	            tail[find(tail,-1,len-1,a[i])] =a[i];
 	            //cout<<i<<" else"<<endl;
 	        }
 	    }
